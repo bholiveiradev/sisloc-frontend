@@ -1,4 +1,4 @@
-# Sisloc - Teste Técnico - Frontend
+# Teste Técnico - Frontend
 
 Suponha que você tenha sido solicitado a desenvolver uma e-commerce para o ramo de locação. O cliente solicitou um MVP para validar seu conhecimento, com as seguintes características:
 
