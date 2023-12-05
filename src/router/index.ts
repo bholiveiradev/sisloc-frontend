@@ -1,20 +1,47 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+
+import MainLayoutComponent from '@/components/MainLayoutComponent.vue';
+
+import Home from '@/pages/Home.vue';
+import Product from '@/pages/Product.vue';
+import Cart from '@/pages/Cart.vue';
+import Login from '@/pages/Login.vue';
+import NotFound from '@/pages/NotFound.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
+    path: '/',
+    component: MainLayoutComponent,
+    beforeEnter: (to, from, next) => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        next();
+      } else {
+        next('/login');
+      }
+    },
+    children: [
+      {
+        path: '',
+        component: Home,
+      },
+      {
+        path: 'produto/:id',
+        component: Product,
+      },
+      {
+        path: 'carrinho',
+        component: Cart,
+      },
+    ],
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: NotFound,
   },
 ];
 
