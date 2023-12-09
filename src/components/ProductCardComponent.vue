@@ -20,12 +20,7 @@
       </h6>
       <div class="d-flex align-items-end justify-content-center">
         <h4 class="card-text fw-bold mb-0">
-          {{
-            product.dailyPrice.toLocaleString('pt-br', {
-              style: 'currency',
-              currency: 'BRL',
-            })
-          }}
+          {{ currencyBrl(product.dailyPrice) }}
         </h4>
         <span class="ms-1">/dia</span>
       </div>
@@ -43,6 +38,8 @@
 </style>
 
 <script lang="ts">
+import { currencyBrl } from '../utils/currency';
+
 interface Product {
   id: number;
   name: string;
@@ -71,7 +68,7 @@ export default {
   setup(props: Props) {
     const productImage = `${process.env.VUE_APP_UPLOADS_URL}/${props.product.image}`;
 
-    return { productImage };
+    return { productImage, currencyBrl };
   },
 };
 </script>

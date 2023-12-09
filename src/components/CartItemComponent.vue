@@ -17,11 +17,7 @@
             <span class="text-muted"> Modalidade: </span>
             <span class="text-success">
               {{ item.modality.label }} -
-              {{
-                item.modality.price.toLocaleString('pt-br', {
-                  minimumFractionDigits: 2,
-                })
-              }}
+              {{ currencyBrl(item.modality.price) }}
             </span>
           </p>
         </div>
@@ -49,11 +45,7 @@
         >
           <span class="d-block">Subtotal R$</span>
           <h4 class="mb-0">
-            {{
-              item.subtotal.toLocaleString('pt-br', {
-                minimumFractionDigits: 2,
-              })
-            }}
+            {{ currencyBrl(item.subtotal, false) }}
           </h4>
         </div>
         <div
@@ -71,6 +63,7 @@
 <script lang="ts">
 import { ref, watch, computed } from 'vue';
 import { useStore } from 'vuex';
+import { currencyBrl } from '@/utils/currency';
 
 interface Modality {
   label: string;
@@ -151,6 +144,7 @@ export default {
       onIncrementQuantity,
       onDecrementQuantity,
       onRemoveFromCart,
+      currencyBrl,
     };
   },
 };

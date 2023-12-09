@@ -30,24 +30,14 @@
                 >
                   {{ modality.label }}
                   <span class="d-block">
-                    {{
-                      modality.price.toLocaleString('pt-br', {
-                        style: 'currency',
-                        currency: 'BRL',
-                      })
-                    }}
+                    {{ currencyBrl(modality.price) }}
                   </span>
                 </button>
               </div>
             </div>
             <div class="pt-2 pb-2 d-flex align-items-end">
               <h3 class="mb-0">
-                {{
-                  current.productUnitPrice.toLocaleString('pt-br', {
-                    style: 'currency',
-                    currency: 'BRL',
-                  })
-                }}
+                {{ currencyBrl(current.productUnitPrice) }}
               </h3>
             </div>
             <div class="row">
@@ -115,6 +105,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import { currencyBrl } from '@/utils/currency';
 
 import api from '@/services/api';
 

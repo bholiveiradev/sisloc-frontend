@@ -23,11 +23,7 @@
             <div class="card-body p-4 text-end">
               <span>Total R$</span>
               <h3 class="mb-0">
-                {{
-                  totalCart.toLocaleString('pt-br', {
-                    minimumFractionDigits: 2,
-                  })
-                }}
+                {{ currencyBrl(totalCart) }}
               </h3>
             </div>
           </div>
@@ -40,6 +36,7 @@
 <script setup lang="ts">
 import { useStore } from 'vuex';
 import { computed } from 'vue';
+import { currencyBrl } from '../utils/currency';
 
 import CartItemComponent from '@/components/CartItemComponent.vue';
 
